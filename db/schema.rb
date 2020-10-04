@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_221815) do
+ActiveRecord::Schema.define(version: 2020_10_04_222002) do
+
+  create_table "events", force: :cascade do |t|
+    t.integer "group_id"
+    t.string "title"
+    t.text "description"
+    t.string "location"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
