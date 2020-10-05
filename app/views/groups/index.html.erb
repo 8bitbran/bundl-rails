@@ -1,0 +1,9 @@
+<h1>Browse Groups</h1>
+
+<ul>
+    <% @groups.each do |group| %>
+        <h2><%= group.name %></h2>
+        <i><%= group.location %></i>
+        <p><%= group.description %></p>
+    <% end %>
+</ul>

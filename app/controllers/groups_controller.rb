@@ -1,4 +1,8 @@
 class GroupsController < ApplicationController
+    def index
+        @groups = Group.all
+    end
+    
     def show
         find_group
     end
