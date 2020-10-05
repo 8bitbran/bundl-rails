@@ -1,0 +1,22 @@
+<h1>Start a new group</h1>
+
+<%= form_with scope: :group, url: groups_path, local: true do |f| %>
+    <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+    </p>
+
+    <p> 
+        <%= f.label :location, "Hometown" %><br>
+        <%= f.text_field :location %>
+    </p>
+
+    <p> 
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+    </p>
+
+    <p>
+        <%= f.submit "Create Group" %>
+    </p>
+<% end %>
