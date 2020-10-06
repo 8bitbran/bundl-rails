@@ -1,12 +1,20 @@
-<h1>Event</h1>
+<h1><%= @event.title %></h1>
 
-<h2><%= @event.title %></h2>
-<i><%= @event.location %></i>
+<p>image</p>
+
+<h2>Details</h2>
 <p><%= @event.description %></p>
 
 <div class="group-info">
     <h3>Group Info</h3>
     <strong><%= @event.group.name %></strong><br>
     <i><%= @event.group.location %></i>
+</div>
+
+<div class="event-info">
+    <h3>Event Info</h3>
+    <p>Event date</p>
+    <p>Event startime - Event endtime</p>
+    <i><%= @event.location %></i>
 </div>
 
