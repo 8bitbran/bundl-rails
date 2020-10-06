@@ -1,9 +1,14 @@
 <h1>Create a new event</h1>
 
-<%= form_with scope: :event, urL: events_path, local: true do |f| %>
+<%= form_with scope: :event, url: events_path, local: true do |f| %>
     <p>
         <%= f.label :title %><br>
         <%= f.text_field :title %>
+    </p>
+
+    <p>
+        <%= f.label :group_id, "Event Group" %><br>
+        <%= f.collection_select :group_id, Group.order(:name),:id,:name, include_blank: true %>
     </p>
 
     <p> 
