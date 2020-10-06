@@ -6,6 +6,11 @@
         <%= f.text_field :title %>
     </p>
 
+    <p> 
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+    </p>
+
     <p>
         <%= f.label :group_id, "Event Group" %><br>
         <%= f.collection_select :group_id, Group.order(:name),:id,:name, include_blank: true %>
@@ -16,9 +21,18 @@
         <%= f.text_field :location %>
     </p>
 
+    <p>
+        <%= f.label :starttime, "Start Time" %><br>
+        <%= f.datetime_select(:starttime, order: [:month, :day, :year], ampm: true) %>
+    </p>
+
     <p> 
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
+        <%= f.label :endtime, "End Time" %><br>
+        <%= f.datetime_select(:endtime, order: [:month, :day, :year], ampm: true) %>
+    </p>
+
+    <p>
+
     </p>
 
     <p>
