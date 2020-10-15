@@ -4,7 +4,7 @@ class Group < ApplicationRecord
     validates :location, presence: true
     has_one :topic
     has_many :memberships
-    # has_many :members, through: :memberships, source: :user
+    has_many :members, through: :memberships, source: :user
     has_many :events
     has_many :rsvps, through: :events
 end

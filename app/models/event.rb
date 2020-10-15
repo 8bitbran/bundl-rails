@@ -4,5 +4,5 @@ class Event < ApplicationRecord
     validates :location, presence: true
     belongs_to :group
     has_many :rsvps
-    # has_many :members, through: :rsvp, source: :user
+    has_many :members, through: :rsvp, source: :user
 end
