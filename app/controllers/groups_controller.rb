@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+    before_action :require_login, except: [:index, :show]
+
     def index
         @groups = Group.all
     end
@@ -14,7 +16,6 @@ class GroupsController < ApplicationController
     def create
         @group = Group.new(group_params)
         @group.user_id = current_user.id
-        byebug
         if @group.save
             redirect_to @group
         else
