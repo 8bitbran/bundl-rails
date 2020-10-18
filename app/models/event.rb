@@ -5,4 +5,5 @@ class Event < ApplicationRecord
     belongs_to :group
     has_many :rsvps
     has_many :members, through: :rsvp, source: :user
+    accepts_nested_attributes_for :group
 end
