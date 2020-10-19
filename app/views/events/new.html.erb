@@ -1,41 +1,51 @@
-<h1>Create a new event</h1>
+<h2 class="text-center mt-4">Create a new event</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <%= simple_form_for @event do |f| %>
+                <div class="form-inputs">
+                    <%= f.input :title,
+                            required: false, 
+                            label: "Title",
+                            autofocus: true %>
 
-<%= form_with scope: :event, url: events_path, local: true do |f| %>
-    <p>
-        <%= f.label :title %><br>
-        <%= f.text_field :title %>
-    </p>
+                    <%= f.input :description,
+                            required: false,
+                            label: "Description",
+                            autofocus: true %>
 
-    <p> 
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
-    </p>
+                    <%= f.label :group_id, "Select Group" %><br>
 
-    <p>
-        <%= f.label :group_id, "Event Group" %><br>
-        <%= f.collection_select :group_id, Group.order(:name),:id,:name, include_blank: true %>
-    </p>
+                    <%= f.collection_select :group_id, 
+                            current_user.groups,
+                            :id,
+                            :name %><br><br>
 
-    <p> 
-        <%= f.label :location %><br>
-        <%= f.text_field :location %>
-    </p>
+                    <%= f.input :location,
+                            required: false,
+                            label: "Location",
+                            autofocus: true %>
 
-    <p>
-        <%= f.label :starttime, "Start Time" %><br>
-        <%= f.datetime_select(:starttime, order: [:month, :day, :year], ampm: true) %>
-    </p>
+                    <%= f.input :starttime,
+                            as: :datetime,
+                            order: [:month, :day, :year],
+                            ampm: true,
+                            required: false,
+                            label: "Start Time" %>
 
-    <p> 
-        <%= f.label :endtime, "End Time" %><br>
-        <%= f.datetime_select(:endtime, order: [:month, :day, :year], ampm: true) %>
-    </p>
+                    <%= f.input :endtime,
+                            as: :datetime,
+                            order: [:month, :day, :year],
+                            ampm: true,
+                            required: false,
+                            label: "End Time" %>
+                </div>
 
-    <p>
-
-    </p>
-
-    <p>
-        <%= f.submit "Create Event" %>
-    </p>
-<% end %>
+                <div class="form-actions p-2 mb-2 row justify-content-center">
+                    <%= f.button :submit, "Create Event", class: "btn btn-primary" %>
+                </div>
+                
+            <% end %>
+        </div>
+    </div>
+</div>

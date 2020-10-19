@@ -15,7 +15,8 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.new(event_params)
-        if @event.save
+        byebug
+        if Group.find(params[:event][:group_id]).user == current_user && @event.save
             redirect_to @event
         else 
             render :new
