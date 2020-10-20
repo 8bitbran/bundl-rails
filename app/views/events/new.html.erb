@@ -17,7 +17,7 @@
                     <%= f.label :group_id, "Select Group" %><br>
 
                     <%= f.collection_select :group_id, 
-                            current_user.groups,
+                            current_user.groups.order(:name),
                             :id,
                             :name %><br><br>
 
