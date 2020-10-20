@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_232702) do
+ActiveRecord::Schema.define(version: 2020_10_20_233916) do
 
   create_table "events", force: :cascade do |t|
     t.integer "group_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_10_17_232702) do
   create_table "rsvps", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
-    t.boolean "going"
   end
 
   create_table "topics", force: :cascade do |t|
