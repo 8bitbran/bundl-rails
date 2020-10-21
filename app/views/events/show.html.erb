@@ -1,4 +1,11 @@
-<p>Event date</p>
+<% if @event.starttime.past? && !@event.endtime.past? %>
+    <p><strong>This event is happening now</strong></p>
+<% elsif @event.starttime.past? && @event.endtime.past? %>
+    <p><strong>This event has passed</strong></p>
+<% else %>
+    <p>Starts in <strong><%= distance_of_time_in_words(Time.now, @event.starttime) %></strong></p>
+<% end %>
+
 <h1><%= @event.title %></h1>
 
 <p>image</p>
@@ -10,12 +17,13 @@
     <h3>Group Info</h3>
     <strong><%= @event.group.name %></strong><br>
     <i><%= @event.group.location %></i>
+    <p><%= truncate(@event.group.description) %></p>
 </div>
 
 <div class="event-info">
     <h3>Event Info</h3>
     <p>Event date</p>
-    <p>Event startime - Event endtime</p>
+    <p>Event starttime - Event endtime</p>
     <i><%= @event.location %></i>
     <% rsvp = @event.rsvps.where("user_id = ?", current_user.id) %>
     <% if rsvp.empty? %>
