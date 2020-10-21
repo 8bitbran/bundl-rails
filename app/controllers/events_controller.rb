@@ -15,7 +15,6 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.new(event_params)
-        byebug
         if Group.find(params[:event][:group_id]).user == current_user && @event.save
             redirect_to @event
         else 
@@ -30,6 +29,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-        params.require(:event).permit(:title, :description, :location, :group_id)
+        params.require(:event).permit(:title, :description, :location, :group_id, :starttime, :endtime)
     end
 end
