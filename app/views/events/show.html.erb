@@ -27,7 +27,7 @@
     <i><%= @event.location %></i>
     <% rsvp = @event.rsvps.where("user_id = ?", current_user.id) %>
     <% if rsvp.empty? %>
-        <%= button_to "Going", rsvps_path(rsvp: {event_id: @event.id} ), method: :post, class: "rsvp-button" %>
+        <%= button_to "RSVP", rsvps_path(rsvp: {event_id: @event.id} ), method: :post, class: "rsvp-button" %>
     <% else %>
         <%= button_to "Cancel RSVP", rsvp.first, method: :delete, class: "rsvp-button cancel" %>
     <% end %>
