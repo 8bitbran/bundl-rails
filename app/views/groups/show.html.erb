@@ -1,4 +1,10 @@
 <h1><%= @group.name %></h1>
+<% membership = @group.memberships.where("user_id = ?", current_user.id) %>
+<% if membership.empty? %>
+    <%= button_to "Join Group", memberships_path(membership: {group_id: @group.id} ), method: :post, class: "membership-button" %>
+<% else %>
+    <%= button_to "Leave Group", membership.first, method: :delete, class: "membership-button cancel" %>
+<% end %>
 <%= @group.location %>
 <p><%= @group.description %></p>
 
