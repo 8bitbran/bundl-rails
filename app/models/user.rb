@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :groups
   has_many :rsvps
+  has_many :memberships
 end
