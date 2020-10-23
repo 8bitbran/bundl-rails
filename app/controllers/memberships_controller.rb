@@ -1,5 +1,10 @@
 class MembershipsController < ApplicationController
 
+    def index
+        @memberships = Membership.where(group_id: params[:group_id])
+        @group = Group.find(params[:group_id])
+    end 
+
     def create 
         @membership = current_user.memberships.build(membership_params)
         if @membership.save
