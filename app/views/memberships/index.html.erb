@@ -1,0 +1,6 @@
+<h1><%= @group.name %> Members</h1>
+
+<% @memberships.each do |member| %>
+    <p>Profile Picture</p>
+    <h2><%= member.user.name %></h2>
+<% end %>
