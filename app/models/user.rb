@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :groups
   has_many :rsvps
   has_many :memberships
+  has_many :discussions
 end

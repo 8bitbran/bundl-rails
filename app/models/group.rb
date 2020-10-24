@@ -8,4 +8,5 @@ class Group < ApplicationRecord
     has_many :members, through: :memberships, source: :user
     has_many :events
     has_many :rsvps, through: :events
+    has_many :discussions
 end
