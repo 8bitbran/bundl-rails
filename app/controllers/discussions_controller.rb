@@ -6,10 +6,6 @@ class DiscussionsController < ApplicationController
         @group = Group.find(params[:group_id])
     end
 
-    def new
-        @discussion = Discussion.new 
-    end
-
     def create 
         @discussion = current_user.discussions.build(discussion_params)
         if @discussion.save
