@@ -1,0 +1,23 @@
+<h1>Discussions (<%= @group.discussions.count %>)</h1>
+
+<%= simple_form_for(@discussion, as: :discussion, method: :post, url: group_discussions_path) do |f| %>
+    <%# <%= f.error_notification %>
+    <%= f.input :group_id, :as => :hidden, :input_html => { :value => params[:group_id] } %>
+
+    <%= f.input :content,
+            required: true,
+            label: "Message",
+            input_html: { autocomplete: "content" }%>
+
+    <%= f.button :submit, "Post", class: "btn btn-primary" %>
+<% end %>
+
+<ul>
+<% @discussions.reverse.each do |discussion| %>
+    <li>
+        <h2><%= discussion.user.name %></h2>
+        <p><i><%= time_ago_in_words(discussion.created_at) %> ago</i></p>
+        <p><%= discussion.content %></p>
+    </li>
+<% end %>
+</ul>
