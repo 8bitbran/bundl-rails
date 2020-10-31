@@ -9,4 +9,7 @@ class Group < ApplicationRecord
     has_many :events
     has_many :rsvps, through: :events
     has_many :discussions
+    has_many :group_tags
+    has_many :tags, through: :group_tags
+    accepts_nested_attributes_for :group_tags
 end
