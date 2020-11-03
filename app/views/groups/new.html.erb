@@ -1,22 +1,44 @@
 <h1>Start a new group</h1>
 
-<%= form_with scope: :group, url: groups_path, local: true do |f| %>
+<%= simple_form_for @group do |f| %>
     <p>
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
+        <%= f.input :name,
+                required: true,
+                label: "Name",
+                placeholder: "Full Name",
+                autofocus: true %>
     </p>
 
     <p> 
-        <%= f.label :location, "Hometown" %><br>
-        <%= f.text_field :location %>
+        <%= f.input :location, 
+                required: true,
+                label: "Hometown",
+                placeholder: "City, State",
+                autofocus: true %>
     </p>
 
     <p> 
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
+        <%= f.input :description,
+                as: :text, 
+                required: true,
+                label: "Description",
+                placeholder: "Enter up to 500 characters",
+                autofocus: true %>
+    </p>
+
+
+    <p>
+        <%= simple_fields_for :group_tags do |ff| %>
+            <%= ff.input :tag_list,
+                    as: :text,
+                    required: false, 
+                    label: "Tags",
+                    placeholder: "Enter comma-seperated values",
+                    autofocus: true %>
+        <% end %>
     </p>
 
     <p>
-        <%= f.submit "Create Group" %>
+        <%= f.button :submit, "Create Group" %>
     </p>
 <% end %>
