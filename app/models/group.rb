@@ -12,4 +12,14 @@ class Group < ApplicationRecord
     has_many :group_tags
     has_many :tags, through: :group_tags
     accepts_nested_attributes_for :group_tags
+
+    def tag_list 
+        self.tags.map { |t| t.name }.join(", ")
+    end 
+
+    def tag_list=(value)
+        tag_names = value.split(/,\s+/)
+        
+        self.tags = tag_names.map { |name| Tag.where('name = ?', name).first or Tag.create(:name => name) }
+    end 
 end
