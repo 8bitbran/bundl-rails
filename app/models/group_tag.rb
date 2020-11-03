@@ -1,8 +1,8 @@
 class GroupTag < ApplicationRecord
-    has_one :group 
-    has_one :tag 
+    belongs_to :group 
+    belongs_to :tag 
 
-    accepts_nested_attributes_for :tags
+    accepts_nested_attributes_for :tag
 
     validates :tag, :group, presence: true
     validates :tag_id, :uniqueness => {:scope => :group_id}

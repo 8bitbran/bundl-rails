@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
-    belongs_to :group_tag
-    belongs_to :group
+    has_many :group_tags
+    has_many :groups, through: :group_tags
 
     validates :name, uniqueness: true
 end
