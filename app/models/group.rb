@@ -13,6 +13,14 @@ class Group < ApplicationRecord
     has_many :tags, through: :group_tags
     accepts_nested_attributes_for :group_tags
 
+    def self.search(search)
+        if search 
+            where(["name LIKE ?","%#{search}%"])
+        else
+            all
+        end
+    end 
+
     def tag_list 
         self.tags.map { |t| t.name }.join(", ")
     end 
