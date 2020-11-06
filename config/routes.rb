@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'static#home'
+  resources :searches
   resources :groups, only: [:index, :show, :new, :create, :destroy] do
     resources :memberships, only: [:index], path: "/members"
     resources :discussions, only: [:index, :create, :destroy]

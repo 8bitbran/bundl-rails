@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_235815) do
+ActiveRecord::Schema.define(version: 2020_11_05_220126) do
 
   create_table "discussions", force: :cascade do |t|
     t.text "content"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_10_30_235815) do
   create_table "rsvps", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "name"
+    t.string "topic"
+    t.string "tag"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
