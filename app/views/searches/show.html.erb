@@ -1,0 +1,30 @@
+<h1>Search Results</h1>
+<p><%= link_to "Back", new_search_path %></p>
+
+<% if @search.search_tags.empty? %>
+    <p>No groups were found.</p>
+<% else %>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Topic</th>
+                <th>Tag</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @search.search_tags.each do |tag| %>
+            <tr>
+                <% tag.groups.each do |group| %>
+                <td><%= group.name %></td>
+                <td><%= group.topic %></td>
+                <td><%= tag.name.capitalize %></td>
+                <td><%= link_to 'Show', group %></td>
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+</table>
+<% end %>
