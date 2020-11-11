@@ -2,27 +2,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
-            <%= simple_form_for @event do |f| %>
+            <%= simple_form_for(@event) do |f| %>
                 <div class="form-inputs">
+
+                    <%= f.input :group_id, :as => :hidden, :input_html => { :value => @group } %>
+
                     <%= f.input :title,
-                            required: false, 
+                            required: true, 
                             label: "Title",
                             autofocus: true %>
 
                     <%= f.input :description,
-                            required: false,
+                            required: true,
                             label: "Description",
                             autofocus: true %>
 
-                    <%= f.label :group_id, "Select Group" %><br>
-
-                    <%= f.collection_select :group_id, 
-                            current_user.groups.order(:name),
-                            :id,
-                            :name %><br><br>
-
                     <%= f.input :location,
-                            required: false,
+                            required: true,
                             label: "Location",
                             autofocus: true %>
 
@@ -30,14 +26,14 @@
                             as: :datetime,
                             order: [:month, :day, :year],
                             ampm: true,
-                            required: false,
+                            required: true,
                             label: "Start Time" %>
 
                     <%= f.input :endtime,
                             as: :datetime,
                             order: [:month, :day, :year],
                             ampm: true,
-                            required: false,
+                            required: true,
                             label: "End Time" %>
                 </div>
 

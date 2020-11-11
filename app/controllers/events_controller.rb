@@ -3,6 +3,7 @@ class EventsController < ApplicationController
     
     def index 
         @events = Event.all
+        @group = Group.find(params[:group_id]) if params[:group_id]
     end
     
     def show
@@ -11,12 +12,14 @@ class EventsController < ApplicationController
 
     def new
         @event = Event.new
+        @group = params[:group_id]
     end
 
     def create
         @event = Event.new(event_params)
-        if Group.find(params[:event][:group_id]).user == current_user && @event.save
-            redirect_to @event
+        byebug
+        if @event.group.user == current_user && @event.save
+            redirect_to group_path(@event.group)
         else 
             render :new
         end
