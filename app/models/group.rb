@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
     validates :name, presence: true, length: { minimum: 5, maximum: 64 }
     validates :description, presence: true, length: { minimum: 50, maximum: 500 }
+    validates :topic, presence: true
     validates :location, presence: true
     has_one :topic
     belongs_to :user
