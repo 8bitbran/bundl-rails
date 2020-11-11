@@ -8,6 +8,14 @@
                 placeholder: "Group Name",
                 autofocus: true %>
     </p>
+    
+    <%= f.input :topic,
+            collection:Topic.all,
+            label_method: :title,
+            value_method: :id,
+            label: "Category",
+            include_blank: true,
+            required: true %>
 
     <p> 
         <%= f.input :location, 
