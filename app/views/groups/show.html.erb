@@ -3,7 +3,8 @@
 
 <% if current_user == @group.user %>
     <%= button_to "Create Event", new_group_event_path(@group), method: :get %>
-    <%= button_to "Start Discussion", group_discussions_path(@group), method: :get %>
+    <%= button_to "Events", group_events_path(@group), method: :get %>
+    <%= button_to "Discussions", group_discussions_path(@group), method: :get %>
     <%= button_to "Delete Group", group_path(@group), method: :delete, class: "delete-group", data: {confirm: "Are you sure you want to delete this group?"} %>
 <% elsif membership.empty? %>
     <%= button_to "Join Group", memberships_path(membership: {group_id: @group.id} ), method: :post, class: "membership-button" %>
