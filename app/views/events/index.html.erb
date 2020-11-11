@@ -1,9 +1,16 @@
 <h1>Browse Events</h1>
 
-<ul>
-    <% @events.each do |event| %>
-        <h2><%= event.title %></h2>
+<% if @group %>
+    <% @group.events.each do |event| %>
+        <h2><%= link_to event.title, group_event_path(@group, event) %></h2>
         <i><%= event.location %></i>
         <p><%= event.description %></p>
     <% end %>
-</ul>
+<% else %>
+    <% @events.each do |event| %>
+        <h2><%= link_to event.title, group_event_path(event.group, event) %></h2>
+        <i><%= event.location %></i>
+        <p><%= event.description %></p>
+    <% end %>
+
+<% end %>
