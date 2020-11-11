@@ -8,7 +8,7 @@
 
 <ul>
     <% @groups.each do |group| %>
-        <h2><%= group.name %></h2>
+        <h2><%= link_to group.name, group_path(group) %></h2>
         <i><%= group.location %></i>
         <p><%= group.description %></p>
     <% end %>
