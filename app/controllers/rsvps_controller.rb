@@ -1,5 +1,6 @@
 class RsvpsController < ApplicationController
-
+    before_action :require_login
+    
     def create
         @rsvp = current_user.rsvps.build(rsvp_params)
         if @rsvp.save

@@ -1,5 +1,6 @@
 class DiscussionsController < ApplicationController
-
+    before_action :require_login
+    
     def index 
         @discussion = Discussion.new
         @discussions = Discussion.where(group_id: params[:group_id])

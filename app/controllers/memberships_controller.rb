@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
-
+    before_action :require_login
+    
     def index
         @memberships = Membership.where(group_id: params[:group_id])
         @group = Group.find(params[:group_id])
