@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_023359) do
+ActiveRecord::Schema.define(version: 2020_11_12_020401) do
 
   create_table "discussions", force: :cascade do |t|
     t.text "content"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_023359) do
     t.text "description"
     t.string "location"
     t.integer "user_id"
+    t.integer "topic_id"
   end
 
   create_table "memberships", force: :cascade do |t|
