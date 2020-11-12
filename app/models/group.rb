@@ -3,7 +3,7 @@ class Group < ApplicationRecord
     validates :description, presence: true, length: { minimum: 50, maximum: 500 }
     validates :topic, presence: true
     validates :location, presence: true
-    has_one :topic
+    belongs_to :topic
     belongs_to :user
     has_many :memberships
     has_many :members, through: :memberships, source: :user
