@@ -16,7 +16,6 @@ class GroupsController < ApplicationController
 
     def create
         @group = Group.new(group_params)
-        @group.user_id = current_user.id
         @group.tag_list = params[:group_tags][:tag_list]
         if @group.save
             redirect_to @group
@@ -39,6 +38,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params 
-        params.require(:group).permit(:name, :description, :location, group_tags_attributes: [:tag_list]) 
+        params.require(:group).permit(:topic_id, :user_id, :name, :description, :location, group_tags_attributes: [:tag_list]) 
     end 
 end
