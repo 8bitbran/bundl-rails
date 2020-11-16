@@ -11,13 +11,18 @@ class EventsController < ApplicationController
     end 
 
     def new
-        @event = Event.new
-        @group = params[:group_id]
+        @group = Group.find(params[:group_id])
+        if @group.user == current_user
+            @event = Event.new
+        else
+            flash[:danger] = "You must be the group owner to create events."
+            redirect_to @group
+        end
     end
 
     def create
         @event = Event.new(event_params)
-        if @event.group.user == current_user && @event.save
+        if @event.save
             redirect_to group_path(@event.group)
         else 
             render :new
