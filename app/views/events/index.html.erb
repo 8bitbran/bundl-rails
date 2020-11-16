@@ -1,16 +1,24 @@
-<h1>Browse Events</h1>
-
 <% if @group %>
-    <% @group.events.each do |event| %>
-        <h2><%= link_to event.title, group_event_path(@group, event) %></h2>
-        <i><%= event.location %></i>
-        <p><%= event.description %></p>
+    <h1 class="text-center mt-4">Browse Events (<%= @group.events.count %>)</h1>
+    <% if @group.events.empty? %>
+        <p class="text-center">There are no upcoming events for this group.</p>
+    <% else %>
+        <% @group.events.each do |event| %>
+            <h2><%= link_to event.title, group_event_path(@group, event) %></h2>
+            <i><%= event.location %></i>
+            <p><%= event.description %></p>
+        <% end %>
     <% end %>
 <% else %>
-    <% @events.each do |event| %>
-        <h2><%= link_to event.title, group_event_path(event.group, event) %></h2>
-        <i><%= event.location %></i>
-        <p><%= event.description %></p>
+    <h1 class="text-center mt-4">Browse Events (<%= @events.count %>)</h1>
+    <% if @events.empty? %>
+        <p class="text-center">There are no upcoming events.</p>
+    <% else %>
+        <% @events.each do |event| %>
+            <h2><%= link_to event.title, group_event_path(event.group, event) %></h2>
+            <i><%= event.location %></i>
+            <p><%= event.description %></p>
+        <% end %>
     <% end %>
 
 <% end %>
