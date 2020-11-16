@@ -1,0 +1,14 @@
+<% if @group.errors.any? %>
+    <div class="alert alert-danger alert-dismissible show" role="alert">
+            <h4 class="alert-heading">The following errors prevented the group from being created:</h2>
+            <ul>
+                <% @group.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+            
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+<% end %>
