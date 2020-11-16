@@ -14,6 +14,10 @@ class GroupsController < ApplicationController
         @group.group_tags.build
     end 
 
+    def edit
+        find_group
+    end
+
     def create
         @group = Group.new(group_params)
         @group.tag_list = params[:group_tags][:tag_list]
@@ -21,6 +25,16 @@ class GroupsController < ApplicationController
             redirect_to @group
         else
             render :new
+        end
+    end
+
+    def update
+        find_group 
+        if @group.update(group_params)
+            flash[:notice] = "Group was updated successfully."
+            redirect_to @group
+        else 
+            render 'edit'
         end
     end
 

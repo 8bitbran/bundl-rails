@@ -17,7 +17,6 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.new(event_params)
-        byebug
         if @event.group.user == current_user && @event.save
             redirect_to group_path(@event.group)
         else 
