@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     end 
 
     def show
+        set_user
     end 
 
     def new
@@ -13,21 +14,14 @@ class UsersController < ApplicationController
     def create 
         @user = User.build(user_params)
         @user.save 
-        redirect_to @user
-    end 
-
-    def update 
-        @user.update(user_params)
-        redirect_to @user 
-    end
-
-    def edit 
+        flash[:success] = "You have signed up successfully."
+        redirect_to '/'
     end 
 
     def destroy 
         @user.destroy
         session[:user_id] = nil if @user == current_user || current_user.admin?
-        flash[:notice] = "Your account has been permanently deleted. This cannot be undone."
+        flash[:danger] = "Your account has been permanently deleted. This cannot be undone."
         redirect_to root_path
     end 
 
