@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5">
+                <%= render 'errors' %>
+                <%= simple_form_for @group do |f| %>
+                    <%= f.input :user_id, :as => "hidden", :input_html => { :value => current_user.id } %>
+
+                    <%= f.input :name,
+                            required: true,
+                            label: "Name",
+                            placeholder: "Group Name",
+                            autofocus: true %>
+
+                    <%= f.input :topic,
+                            collection: Topic.all,
+                            label_method: :title,
+                            value_method: :id,
+                            label: "Category",
+                            prompt: "Select Category",
+                            required: true %>
+
+                    <%= f.input :location, 
+                            required: true,
+                            label: "Hometown",
+                            placeholder: "City, State",
+                            autofocus: true %>
+
+                    <%= f.input :description,
+                            as: :text, 
+                            required: true,
+                            label: "Description",
+                            placeholder: "Enter up to 500 characters",
+                            autofocus: true %>
+
+                    <%= simple_fields_for :group_tags do |ff| %>
+                        <%= ff.input :tag_list,
+                                as: :text,
+                                required: false, 
+                                label: "Tags",
+                                placeholder: "Enter comma-seperated values",
+                                autofocus: true %>
+                    <% end %>
+                    
+                    <%= f.button :submit, "Submit", class: "btn btn-primary" %>
+                <% end %>
+        </div>
+    </div>
+</div>
