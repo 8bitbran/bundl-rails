@@ -1,17 +1,19 @@
 <h1 class="text-center mt-4">Browse Groups</h1>
 <div class="container">
-    <%= form_with(url: '/groups', method: 'get', local: true) do %>
-        <%= text_field_tag :search, nil, placeholder: 'Enter a name' %>
-        <%= submit_tag("Search") %>
-    <% end %>
-    <%= link_to "Search by tag", new_search_path %>
+    <div class="text-center">
+        <%= form_with(url: '/groups', method: 'get', local: true) do %>
+            <%= text_field_tag :search, nil, placeholder: 'Enter a name' %>
+            <%= submit_tag("Search") %>
+        <% end %>
+        <%= link_to "Search by tag", new_search_path %>
+    </div>
 
     <% @groups.each do |group| %>
         <div class="row justify-content-md-center">
             <div class="col-8 mt-4">
                 <div class="card text-center shadow mb-5 bg-white rounder">
                     <div class="card-header font-italic">
-                       <%= link_to group.user.name, user_path(group.user) %>
+                       by <%= group.user.name %>
                     </div>
 
                     <div class="card-body">
@@ -22,8 +24,8 @@
                         <%= link_to "View Group", group_path(group), class: "btn btn-outline-success" %>
                     </div>
 
-                    <div class="card-footer text-muted">
-                        <small>Created <%= time_ago_in_words(group.created_at) %> ago</small>
+                     <div class="card-footer text-muted">
+                        <small>Created <%# time_ago_in_words(group.created_at) %> ago</small>
                     </div>
                 </div>
             </div>
