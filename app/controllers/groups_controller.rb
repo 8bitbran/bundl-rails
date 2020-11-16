@@ -16,6 +16,10 @@ class GroupsController < ApplicationController
 
     def edit
         find_group
+        if current_user != find_group.user
+            flash[:danger] = "You must be the group owner to edit group details."
+            redirect_to '/'
+        end
     end
 
     def create
@@ -31,7 +35,7 @@ class GroupsController < ApplicationController
     def update
         find_group 
         if @group.update(group_params)
-            flash[:notice] = "Group was updated successfully."
+            flash[:success] = "Group was updated successfully."
             redirect_to @group
         else 
             render 'edit'
