@@ -20,6 +20,7 @@ class MembershipsController < ApplicationController
     def destroy 
         @membership = Membership.find(params[:id])
         @membership.destroy
+        flash[:success] = "You left the group."
         redirect_to root_path
     end 
 
