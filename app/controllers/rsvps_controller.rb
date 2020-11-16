@@ -1,6 +1,6 @@
 class RsvpsController < ApplicationController
     before_action :require_login
-    
+
     def create
         @rsvp = current_user.rsvps.build(rsvp_params)
         if @rsvp.save
@@ -14,7 +14,7 @@ class RsvpsController < ApplicationController
     
     def destroy
         @rsvp = Rsvp.find(params[:id])
-        @rsvp.destroy
+        @rsvp.destroy if @rsvp.user == current_user
         redirect_to root_path
     end
 
