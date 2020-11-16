@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
     before_action :require_login
-    
+
     def index 
         @discussion = Discussion.new
         @discussions = Discussion.where(group_id: params[:group_id])
@@ -20,7 +20,7 @@ class DiscussionsController < ApplicationController
 
     def destroy
         @discussion = Discussion.find(params[:id])
-        @discussion.destroy
+        @discussion.destroy if @discussion.user == current_user
         redirect_to root_path
     end
 
