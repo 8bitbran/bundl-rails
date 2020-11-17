@@ -1,23 +1,28 @@
-<h1>Discussions (<%= @group.discussions.count %>)</h1>
+<div class="container">
+    <h1 class="text-center mt-4">Discussions (<%= @group.discussions.count %>)</h1>
 
-<%= simple_form_for(@discussion, as: :discussion, method: :post, url: group_discussions_path) do |f| %>
-    <%# <%= f.error_notification %>
-    <%= f.input :group_id, :as => :hidden, :input_html => { :value => params[:group_id] } %>
+    <%= simple_form_for(@discussion, as: :discussion, method: :post, url: group_discussions_path) do |f| %>
+        <%# <%= f.error_notification %>
+        <%= f.input :group_id, :as => :hidden, :input_html => { :value => params[:group_id] } %>
 
-    <%= f.input :content,
-            required: true,
-            label: "Message",
-            input_html: { autocomplete: "content" }%>
+        <%= f.input :content,
+                required: true,
+                label: "Message",
+                input_html: { autocomplete: "content" }%>
 
-    <%= f.button :submit, "Post", class: "btn btn-primary" %>
-<% end %>
+        <%= f.button :submit, "Post", class: "btn btn-primary" %>
+    <% end %>
 
-<ul>
-<% @discussions.reverse.each do |discussion| %>
-    <li>
-        <h2><%= discussion.user.name %></h2>
-        <p><i><%= time_ago_in_words(discussion.created_at) %> ago</i></p>
-        <p><%= discussion.content %></p>
-    </li>
-<% end %>
-</ul>
+    <ul>
+    <% @discussions.reverse.each do |discussion| %>
+        <li>
+            <h2><%= discussion.user.name %></h2>
+            <p><i><%= time_ago_in_words(discussion.created_at) %> ago</i></p>
+            <p><%= discussion.content %></p>
+            <% if discussion.user == current_user %>
+                <%= link_to "Delete", group_discussion_path(@group, discussion), method: :delete, class: "text-danger", data: {confirm: "Delete your post permanently?"} %>
+            <% end %>
+        </li>
+    <% end %>
+    </ul>
+</div>
