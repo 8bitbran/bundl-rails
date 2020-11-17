@@ -1,24 +1,22 @@
 <div class="container">
     <h1><%= @group.name %></h1>
-    <div class="row">
+    <div class="row mt-3 mb-3 ml-2">
         <% membership = @group.memberships.where("user_id = ?", current_user.id) %>
         <% if current_user == @group.user %>
-                <%= button_to "Create Event", new_group_event_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
-                <%= button_to "Events", group_events_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
-                <%= button_to "Discussions", group_discussions_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
-                <%= button_to "Edit Info", edit_group_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
-                <%= button_to "Delete Group", group_path(@group), method: :delete, class: "btn btn-outline-danger mr-1", data: {confirm: "Are you sure you want to delete this group?"} %>
+            <%= button_to "Events", group_events_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Discussions", group_discussions_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Create Event", new_group_event_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Edit Info", edit_group_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Delete Group", group_path(@group), method: :delete, class: "btn btn-outline-danger mr-1", data: {confirm: "Are you sure you want to delete this group?"} %>
         <% elsif membership.empty? %>
-            <div class="col">
-                <%= button_to "Join Group", memberships_path(membership: {group_id: @group.id} ), method: :post, class: "membership-button" %>
-            </div>
+            <%= button_to "Join Group", memberships_path(membership: {group_id: @group.id} ), method: :post, class: "btn btn-outline-success mr-1" %>
         <% else %>
-            <div class="col">
-                <%= button_to "Leave Group", membership.first, method: :delete, class: "membership-button cancel" %>
-            </div>
+            <%= button_to "Events", group_events_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Discussions", group_discussions_path(@group), method: :get, class: "btn btn-outline-primary mr-1" %>
+            <%= button_to "Leave Group", membership.first, method: :delete, class: "btn btn-outline-danger mr-1" %>
         <% end %>
     </div>
-    <p><%= @group.description %></p>
+    <p class="mt-4 mb-4"><%= @group.description %></p>
 
     <h2>Members (<%= @group.members.count %>)</h2>
     <% members = @group.members.last(7) %>
