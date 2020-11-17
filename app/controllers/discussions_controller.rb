@@ -10,18 +10,19 @@ class DiscussionsController < ApplicationController
     def create 
         @discussion = current_user.discussions.build(discussion_params)
         if @discussion.save
-            flash[:success] = "You submitted your discussion post."
-            redirect_to group_discussions_path(params[:group_id])
+            redirect_to group_discussions_path(@discussion.group)
         else
             flash[:danger] = "Failed to submit discussion post."
-            redirect_to group_discussions_path(params[:group_id])
+            redirect_to group_discussions_path(@discussion.group)
         end
     end
 
     def destroy
         @discussion = Discussion.find(params[:id])
+        group = @discussion.group
         @discussion.destroy if @discussion.user == current_user
-        redirect_to root_path
+        flash[:success] = "You deleted a discussion post."
+        redirect_to group
     end
 
     private
