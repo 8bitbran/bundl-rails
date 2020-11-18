@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-    before_action :require_login, except: [:index, :show]
+    before_action :require_login, except: [:index]
 
     def index
         @groups = Group.search(params[:search])

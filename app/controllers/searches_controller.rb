@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
-
+    before_action :require_login
+    
     def show
         @search = Search.find(params[:id])
     end 
