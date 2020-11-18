@@ -1,6 +1,7 @@
-<h2 class="text-center mt-4">Join Bundl</h2>
-<p class="text-center">Meet others in your community.</p>
 <div class="container">
+    <h2 class="text-center mt-4">Join Bundl</h2>
+    <p class="text-center">Meet others in your community.</p>
+    <%= link_to 'Log in with Facebook', user_facebook_omniauth_authorize_path, class: "row justify-content-center mb-5" %>
     <div class="row justify-content-center">
         <div class="col-10">
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
