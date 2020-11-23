@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
     end
 
     def create
-        @group = Group.new(group_params)
+        @group = current_user.groups.build(group_params)
         @group.tag_list = params[:group_tags][:tag_list]
         if @group.save
             redirect_to @group

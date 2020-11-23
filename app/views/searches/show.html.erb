@@ -19,7 +19,7 @@
             <tr>
                 <% tag.groups.each do |group| %>
                 <td><%= group.name %></td>
-                <td><%= group.topic %></td>
+                <td><%= group.topic.title %></td>
                 <td><%= tag.name.capitalize %></td>
                 <td><%= link_to 'Show', group %></td>
                 <% end %>

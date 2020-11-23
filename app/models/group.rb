@@ -4,12 +4,12 @@ class Group < ApplicationRecord
     validates :location, presence: true
     belongs_to :topic
     belongs_to :user
-    has_many :memberships
+    has_many :memberships, dependent: :destroy
     has_many :members, through: :memberships, source: :user
-    has_many :events
+    has_many :events, dependent: :destroy
     has_many :rsvps, through: :events
-    has_many :discussions
-    has_many :group_tags
+    has_many :discussions, dependent: :destroy
+    has_many :group_tags, dependent: :destroy
     has_many :tags, through: :group_tags
     accepts_nested_attributes_for :group_tags
 
