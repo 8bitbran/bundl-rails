@@ -1,24 +1,21 @@
-# README
+# Bundl
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A rails web application where users can create, view, update and delete events. You can view the live [demo here](https://www.youtube.com/watch?v=pnDAT-erJuM).
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+Signup or login to CRUD events.
 
-* System dependencies
+## Built Using
 
-* Configuration
+- Ruby on Rails
+- Devise
+- PostgreSQL
 
-* Database creation
+## Contributing
 
-* Database initialization
+Bug reports and pull requests are welcome on Github at https://github.com/branmar97/bundl-rails
 
-* How to run the test suite
+## License 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Available as open source under the terms of the MIT license.
