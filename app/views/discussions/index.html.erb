@@ -1,5 +1,7 @@
-<div class="container">
-    <h1 class="text-center mt-4">Discussions (<%= @group.discussions.count %>)</h1>
+<div class="container mt-5">
+    <h1 class="mt-4">Super Awesome People</h1>
+    <h3 class="mt-2 font-weight-light">Discussions Board</h3>
+    <small><%= link_to "Back to Group", group_path(@group), class: "text-primary" %></small>
 
     <%= simple_form_for(@discussion, as: :discussion, method: :post, url: group_discussions_path) do |f| %>
         <%# <%= f.error_notification %>
@@ -12,17 +14,30 @@
 
         <%= f.button :submit, "Post", class: "btn btn-primary" %>
     <% end %>
+    
+    <div class="row d-flex justify-content-center mt-3">
+        <div class="col-md-12">
+            <div class="headings d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mt-4">Messages (<%= @group.discussions.count %>)</h5>
+            </div>
 
-    <ul>
-    <% @discussions.reverse.each do |discussion| %>
-        <li>
-            <h2><%= discussion.user.name %></h2>
-            <p><i><%= time_ago_in_words(discussion.created_at) %> ago</i></p>
-            <p><%= discussion.content %></p>
-            <% if discussion.user == current_user %>
-                <%= link_to "Delete", group_discussion_path(@group, discussion), method: :delete, class: "text-danger", data: {confirm: "Delete your post permanently?"} %>
+            <% @discussions.reverse.each do |discussion| %>
+                <div class="card p-3 mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="user d-flex flex-row align-items-center"> <span><h6 class="font-weight-bold text-primary pl-12"><%= discussion.user.name %></h6> </span> </div> <small><%= time_ago_in_words(discussion.created_at) %> ago</small>
+                    </div>
+
+                    <div>
+                        <p><%= discussion.content %></p>
+                    </div>
+
+                    <% if discussion.user == current_user %>
+                        <div class="action d-flex justify-content-between align-items-center">
+                            <div class="reply float-left"> <small><%= link_to "Remove", group_discussion_path(@group, discussion), method: :delete, class: "text-danger", data: {confirm: "Delete your post permanently?"} %></small> </div>
+                        </div>
+                    <% end %>
+                </div>
             <% end %>
-        </li>
-    <% end %>
-    </ul>
+        </div>
+    </div>
 </div>
