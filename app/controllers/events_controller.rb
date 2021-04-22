@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
     def new
         @event = Event.new
+        @user_groups = current_user.groups
     end
 
     def create
