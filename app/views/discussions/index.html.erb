@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h1 class="mt-4">Super Awesome People</h1>
-    <h3 class="mt-2 font-weight-light">Discussions Board</h3>
+    <h3 class="mt-2 font-weight-light">Discussion Board</h3>
     <small><%= link_to "Back to Group", group_path(@group), class: "text-primary" %></small>
 
     <%= simple_form_for(@discussion, as: :discussion, method: :post, url: group_discussions_path) do |f| %>
