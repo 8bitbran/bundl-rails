@@ -1,24 +1,51 @@
-<% if @group %>
-    <h1 class="text-center mt-4">Browse Events (<%= @group.events.count %>)</h1>
-    <% if @group.events.empty? %>
-        <p class="text-center">There are no upcoming events for this group.</p>
+<div class="container">
+    <% if @group %>
+        <h1 class="text-center mt-5"><%= @group.name %> Events (<%= @group.events.count %>)</h1>
+        <div class="mt-5">
+            <% if @group.events.empty? %>
+                <p class="text-center">There are no upcoming events for <%= @group.name %>.</p>
+            <% else %>
+                <% @group.events.each do |event| %>
+                    <div class='row mt-4'>
+                        <div class="col-12">
+                            <h2><%= link_to event.title, group_event_path(@group, event) %></h2>
+                        </div>
+                        <div class="col-12">
+                            <p><i><%= event.location %></i></p>
+                        </div>
+                        <div class="col-12">
+                            <p>Starts in <strong><%= distance_of_time_in_words(Time.now, event.starttime) %></strong> | <%= event.rsvps.count %> Attending</p>
+                        </div>
+                        <div class="col-12">
+                            <p><%= truncate(event.description, length: 150) %></p>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
     <% else %>
-        <% @group.events.each do |event| %>
-            <h2><%= link_to event.title, group_event_path(@group, event) %></h2>
-            <i><%= event.location %></i>
-            <p><%= event.description %></p>
+        <h1 class="text-center mt-5">Browse Events (<%= @events.count %>)</h1>
+        <div class="mt-5">
+        <% if @events.empty? %>
+            <p class="text-center">There are no upcoming events.</p>
+        <% else %>
+            <% @events.each do |event| %>
+                <div class='row mt-4'>
+                    <div class="col-12">
+                        <h2><%= link_to event.title, group_event_path(event.group, event) %></h2>
+                    </div>
+                    <div class="col-12">
+                        <p><i><%= event.location %></i></p>
+                    </div>
+                    <div class="col-12">
+                        <p>Starts in <strong><%= distance_of_time_in_words(Time.now, event.starttime) %></strong> | <%= event.rsvps.count %> Attending</p>
+                    </div>
+                    <div class="col-12">
+                        <p><%= truncate(event.description, length: 250) %></p>
+                    </div>
+                </div>
+            <% end %>
         <% end %>
+        </div>
     <% end %>
-<% else %>
-    <h1 class="text-center mt-4">Browse Events (<%= @events.count %>)</h1>
-    <% if @events.empty? %>
-        <p class="text-center">There are no upcoming events.</p>
-    <% else %>
-        <% @events.each do |event| %>
-            <h2><%= link_to event.title, group_event_path(event.group, event) %></h2>
-            <i><%= event.location %></i>
-            <p><%= event.description %></p>
-        <% end %>
-    <% end %>
-
-<% end %>
+</div>
