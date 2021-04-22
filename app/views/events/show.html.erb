@@ -1,32 +1,39 @@
-<h1><%= @event.title %></h1>
-<% if @event.starttime.past? && !@event.endtime.past? %>
-    <p><strong>This event is happening now</strong></p>
-<% elsif @event.starttime.past? && @event.endtime.past? %>
-    <p><strong>This event has passed</strong></p>
-<% else %>
-    <p>Starts in <strong><%= distance_of_time_in_words(Time.now, @event.starttime) %></strong> | <%= @event.rsvps.count %> Attending</p>
-<% end %>
+<div class='container mt-5'>
+    <h1><%= @event.title %></h1>
+    <% if @event.starttime.past? && !@event.endtime.past? %>
+        <p><strong>This event is happening now</strong></p>
+    <% elsif @event.starttime.past? && @event.endtime.past? %>
+        <p><strong>This event has passed</strong></p>
+    <% else %>
+        <p>Starts in <strong><%= distance_of_time_in_words(Time.now, @event.starttime) %></strong> | <%= @event.rsvps.count %> Attending</p>
+    <% end %>
 
-<h2>Details</h2>
-<p><%= @event.description %></p>
-
-<div class="group-info">
-    <h3>Group Info</h3>
-    <strong><%= @event.group.name %></strong><br>
-    <i><%= @event.group.location %></i>
-    <p><%= truncate(@event.group.description) %></p>
-</div>
-
-<div class="event-info">
-    <h3>Event Info</h3>
-    <p><%= @event.starttime.strftime("%B %d, %Y") %></p>
-    <p> <%= @event.starttime.strftime("%I:%M %p") %> - <%= @event.endtime.strftime("%I:%M %p") %></p>
-    <i><%= @event.location %></i>
     <% rsvp = @event.rsvps.where("user_id = ?", current_user.id) %>
     <% if rsvp.empty? %>
-        <%= button_to "RSVP", rsvps_path(rsvp: {event_id: @event.id} ), method: :post, class: "rsvp-button" %>
+            <%= button_to "RSVP", rsvps_path(rsvp: {event_id: @event.id} ), method: :post, class: "rsvp-button" %>
     <% else %>
-        <%= button_to "Cancel RSVP", rsvp.first, method: :delete, class: "rsvp-button cancel" %>
+            <%= button_to "Cancel RSVP", rsvp.first, method: :delete, class: "rsvp-button cancel" %>
     <% end %>
+
+    <div class="mt-4">
+        <h2>Details</h2>
+        <p><%= @event.description %></p>
+    </div>
+
+    <div class="row d-flex mt-4">
+        <div class="col-6">
+            <h3>Event Info</h3>
+            <p><%= @event.starttime.strftime("%B %d, %Y") %></p>
+            <p> <%= @event.starttime.strftime("%I:%M %p") %> - <%= @event.endtime.strftime("%I:%M %p") %></p>
+            <i><%= @event.location %></i>
+        </div>
+
+        <div class="col-6">
+            <h3>Group Info</h3>
+            <strong><%= @event.group.name %></strong><br>
+            <i><%= @event.group.location %></i>
+            <p><%= truncate(@event.group.description) %></p>
+        </div>
+    </div>
 </div>
 
