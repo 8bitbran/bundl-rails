@@ -1,7 +1,8 @@
 <div class="container">
     <% if @group %>
-        <h1 class="text-center mt-5"><%= @group.name %> Events (<%= @group.events.count %>)</h1>
-        <div class="mt-5">
+        <h1 class="text-center mt-5"><%= @group.name %></h1>
+        <h2 class="text-center">Events (<%= @group.events.count %>)</h2>
+        <div class="mt-3">
             <% if @group.events.empty? %>
                 <p class="text-center">There are no upcoming events for <%= @group.name %>.</p>
             <% else %>
