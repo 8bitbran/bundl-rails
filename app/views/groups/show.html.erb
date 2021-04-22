@@ -21,15 +21,15 @@
 
     <h3>Members (<%= @group.members.count + 1 %>)</h3>
     <% members = @group.members.last(7) %>
-    <div class="row">
-        <div class="col-sm-5 text-center w-20 p-3">
-            <%= image_tag("placeholder.png", class: "img-thumbnail w-25 p-3") %>
+    <div class="row d-flex mt-5">
+        <div class="col-sm-2 text-center mt-2">
+            <%= image_tag("placeholder.png", class: "img-thumbnail w-50 p-2") %>
             <h5><%= @group.user.name %></h5>
             <p>Admin</p>
         </div>
         <% members.each do |member| %>
-                <div class="col-sm-5 text-center">
-                    <%= image_tag("placeholder.png", class: "img-thumbnail w-25 p-3") %>
+                <div class="col-sm-2 text-center mt-2">
+                    <%= image_tag("placeholder.png", class: "img-thumbnail w-50 p-2") %>
                     <h5><%= member.name %></h5>
                     <p>Member</p>
                 </div>
