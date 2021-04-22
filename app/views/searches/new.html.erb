@@ -1,11 +1,13 @@
-<h1>Search by Tag</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Search by Tag</h1>
 
-<%= form_with model: @search do |f| %>
+    <div class="text-center">
+        <%= form_with model: @search do |f| %>
+            <%= f.text_field :name, placeholder: "Enter a tag" %>
 
-    <%= f.label :name, "Tag" %>
-    <%= f.text_field :name %><br>
+            <%= f.submit "Search" %>
+        <% end %>
 
-    <%= f.submit "Search" %>
-<% end %>
-
-<p><%= link_to "Back", '/groups' %></p>
+        <p><%= link_to "Back", '/groups' %></p>
+    </div>
+</div>
