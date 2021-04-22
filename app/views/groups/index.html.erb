@@ -26,7 +26,7 @@
                     </div>
 
                      <div class="card-footer text-muted">
-                        <small>Created <%= time_ago_in_words(group.created_at) %> ago</small>
+                        <small>Founded <%= group.created_at.strftime("%B %d, %Y") %></small>
                     </div>
                 </div>
             </div>
