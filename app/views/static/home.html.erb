@@ -1,3 +1,27 @@
 <div class="container">
-    <h1 class="text-center">Welcome to Bundl.</h1>
+    <div class="header text-center mt-5 mb-5">
+        <h1>Take your next step with Bundl</h1>
+        <p class="text-black-50">Start a group to find the people you’re looking for.</p>
+    </div>
+
+    <div class="row justify-content-center text-center mt-5">
+        <div class="col-md-auto m-2 p-4 border bg-primary text-white rounded">
+            <h4>Join a Group</h4>
+            <small><%= link_to "Browse Groups", groups_path, class: "text-warning" %></small>
+        </div>
+
+        <div class="col-md-auto m-2 p-4 border bg-primary text-white rounded">
+            <h4>Find an Event</h4>
+            <small><%= link_to "Browse Events", events_path, class: "text-warning" %></small>
+        </div>
+
+        <div class="col-md-auto m-2 p-4 border bg-primary text-white rounded">
+            <h4>Start a Group</h4>
+            <small><%= link_to "Create Group", new_group_path, class: "text-warning" %></small>
+        </div>
+    </div>
+    
+    <div class="text-center mt-5 mb-5">
+        <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80" alt='Happy group of people' class="rounded img-fluid w-75" />
+    </div>
 </div>
