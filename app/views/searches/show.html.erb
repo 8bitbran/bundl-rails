@@ -1,30 +1,34 @@
-<h1>Search Results</h1>
-<p><%= link_to "Back", new_search_path %></p>
+<div class="container mt-5">
+    <% if @search.search_tags.empty? %>
+        <p class='text-center'>No groups were found.</p>
+    <% else %>
+                <% @search.search_tags.each do |tag| %>
+                    <h1>Search Results</h1>
+                    <small>for "<%= tag.name.capitalize %>" (<%= tag.groups.count %>)</small>
+                    <p><%= link_to "Back", new_search_path %></p>
+                    <% tag.groups.each do |group| %>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-12 mt-4">
+                                <div class="card text-center shadow mb-5 bg-white rounder">
+                                    <div class="card-header font-italic">
+                                        by <%= group.user.name %>
+                                    </div>
 
-<% if @search.search_tags.empty? %>
-    <p>No groups were found.</p>
-<% else %>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Tag</th>
-                <th colspan="3"></th>
-            </tr>
-        </thead>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= link_to group.name, group_path(group), class: "text-success" %></h5>
+                                        <p class="card-text font-italic"><%= group.location %></p>
+                                        <p class="card-text"><%= truncate(group.description, length: 100) %></p>
 
-        <tbody>
-            <% @search.search_tags.each do |tag| %>
-            <tr>
-                <% tag.groups.each do |group| %>
-                <td><%= group.name %></td>
-                <td><%= group.topic.title %></td>
-                <td><%= tag.name.capitalize %></td>
-                <td><%= link_to 'Show', group %></td>
+                                        <%= link_to "View Group", group_path(group), class: "btn btn-outline-success" %>
+                                    </div>
+
+                                    <div class="card-footer text-muted">
+                                        <small>Founded <%= group.created_at.strftime("%B %d, %Y") %></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
                 <% end %>
-            </tr>
-            <% end %>
-        </tbody>
-</table>
-<% end %>
+    <% end %>
+</div>
