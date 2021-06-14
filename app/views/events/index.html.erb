@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container min-vh-100">
     <% if @group %>
-        <h1 class="text-center mt-5"><%= @group.name %></h1>
+        <h1 class="text-center"><%= @group.name %></h1>
         <h2 class="text-center">Events (<%= @group.events.count %>)</h2>
         <div class="mt-3">
             <% if @group.events.empty? %>
@@ -25,7 +25,7 @@
             <% end %>
         </div>
     <% else %>
-        <h1 class="text-center mt-5">Browse Events (<%= @events.count %>)</h1>
+        <h1 class="text-center">Browse Events (<%= @events.count %>)</h1>
         <div class="mt-5">
         <% if @events.empty? %>
             <p class="text-center">There are no upcoming events.</p>
@@ -39,7 +39,13 @@
                         <p><i><%= event.location %></i></p>
                     </div>
                     <div class="col-12">
-                        <p>Starts in <strong><%= distance_of_time_in_words(Time.now, event.starttime) %></strong> | <%= event.rsvps.count %> Attending</p>
+                        <% if event.starttime.past? && !event.endtime.past? %>
+                            <p><strong>Happening now</strong></p>
+                        <% elsif event.starttime.past? && event.endtime.past? %>
+                            <p><strong>Passed <%= time_ago_in_words(event.starttime) %> ago</strong></p>
+                        <% else %>
+                            <p>Starts in <strong><%= distance_of_time_in_words(Time.now, event.starttime) %></strong> | <%= event.rsvps.count %> Attending</p>
+                        <% end %>
                     </div>
                     <div class="col-12">
                         <p><%= truncate(event.description, length: 250) %></p>
