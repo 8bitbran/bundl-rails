@@ -47,8 +47,8 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: myapp_test
+  database: bundl_rails_test
   pool: 5
-  username: brenden
+  username: brandon
   password:
   timeout: 5000
