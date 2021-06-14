@@ -1,6 +1,8 @@
-<h1><%= @group.name %> Members</h1>
+<div class="container min-vh-100">
+    <h1><%= @group.name %> Members</h1>
 
-<% @memberships.each do |member| %>
-    <p>Profile Picture</p>
-    <h2><%= member.user.name %></h2>
-<% end %>
+    <% @memberships.each do |member| %>
+        <p>Profile Picture</p>
+        <h2><%= member.user.name %></h2>
+    <% end %>
+</div>
